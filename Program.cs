@@ -1,4 +1,22 @@
-﻿int examAssignments = 5;
+/*
+This C# console application is designed to:
+- Use arrays to store student names and assignment scores.
+- Use a `foreach` statement to iterate through the student names as an outer program loop.
+- Use an `if` statement within the outer loop to identify the current student name and access that student's assignment scores.
+- Use a `foreach` statement within the outer loop to iterate though the assignment scores array and sum the values.
+- Use an algorithm within the outer loop to calculate the average exam score for each student.
+- Use an `if-elseif-else` construct within the outer loop to evaluate the average exam score and assign a letter grade automatically.
+- Integrate extra credit scores when calculating the student's final score and letter grade as follows:
+    - detects extra credit assignments based on the number of elements in the student's scores array.
+    - divides the values of extra credit assignments by 10 before adding extra credit scores to the sum of exam scores.
+- use the following report format to report student grades:
+
+Student         Exam Score      Overall Grade   Extra Credit
+
+Sophia          92.2            95.88   A       92 (3.68 pts)
+
+*/
+int examAssignments = 5;
 
 
 string[] studentNames = new string[] { "Sophia", "Andrew", "Emma", "Logan" };
@@ -19,7 +37,14 @@ string currentStudentLetterGrade = "";
 Console.Clear();
 Console.WriteLine("Student\t\tExam Score\tOverall Grade\tExtra Credit\n");
 
-
+/*
+The outer foreach loop is used to:
+- iterate through student names
+- assign a student's grades to the studentScores array
+- calculate exam and extra credit sums (inner foreach loop)
+- calculate numeric and letter grade
+- write the score report information
+*/
 foreach (string name in studentNames)
 {
     string currentStudent = name;
@@ -53,7 +78,11 @@ foreach (string name in studentNames)
     decimal examScoreAverage = 0;
     decimal extraCreditAverage = 0;
 
-
+    /*
+    the inner foreach loop:
+    - sums the exam and extra credit scores
+    - counts the extra credit assignments
+    */
     foreach (int score in studentScores)
     {
         gradedAssignments += 1;
@@ -129,7 +158,6 @@ foreach (string name in studentNames)
 
     else
         currentStudentLetterGrade = "F";
-
 
 
     Console.WriteLine($"{currentStudent}\t\t{examScoreAverage}\t\t{currentStudentGrade}\t{currentStudentLetterGrade}\t{extraCreditAverage} ({(((decimal)sumExtraCreditScores / 10) / examAssignments)} pts)");
